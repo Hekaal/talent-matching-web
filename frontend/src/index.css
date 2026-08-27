@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+  body {
+    @apply bg-light text-navy antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+  ::selection {
+    @apply bg-teal/25;
+  }
+  /* Angka selalu monospace + tabular agar kolom data sejajar */
+  th,
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+  :focus-visible {
+    outline: 2px solid theme("colors.teal-700");
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* ── Tipografi ─────────────────────────────────────────────── */
+  /* Label mikro untuk metadata teknis (ID, satuan, status) */
+  .microlabel {
+    @apply font-mono text-[0.625rem] font-medium uppercase tracking-[0.14em] text-muted;
+  }
+  /* Judul halaman */
+  .h-page {
+    @apply text-2xl font-bold tracking-tight text-navy;
+  }
+  /* Judul seksi — sentence case, bukan uppercase, agar terbaca profesional */
+  .h-section {
+    @apply text-lg font-semibold tracking-tight text-navy;
+  }
+  /* Angka data */
+  .num {
+    @apply font-mono tabular-nums;
+  }
+
+  /* ── Permukaan ─────────────────────────────────────────────── */
+  .panel {
+    @apply bg-white border border-line rounded-lg shadow-panel;
+  }
+
+  /* ── Tombol ────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md
+           bg-teal-700 text-white text-sm font-semibold transition-colors
+           hover:bg-teal-ink active:bg-[#00564B]
+           disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-md border
+           border-line-strong bg-white text-navy text-sm font-semibold transition-colors
+           hover:border-navy/50 hover:bg-ice/50
+           disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md
+           text-sm font-semibold text-teal-ink transition-colors hover:bg-teal/10;
+  }
+
+  /* ── Form ──────────────────────────────────────────────────── */
+  .field {
+    @apply w-full px-3.5 py-2.5 rounded-md border border-line-strong bg-white text-navy
+           text-sm placeholder:text-muted/70 transition-colors
+           focus:outline-none focus:border-teal-700 focus:ring-2 focus:ring-teal-700/20;
+  }
+  .field-label {
+    @apply block text-sm font-medium text-navy mb-1.5;
+  }
+
+  /* ── Tabel data ────────────────────────────────────────────── */
+  .th {
+    @apply px-4 py-2.5 text-micro font-semibold uppercase tracking-[0.08em]
+           text-muted bg-white border-b border-line-strong;
+  }
+  .th-num {
+    @apply th text-right;
+  }
+}
+
+/* Transisi halaman — dinonaktifkan bila pengguna memilih reduced motion */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.page-enter {
+  animation: page-in 0.24s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,41 @@
+# ── Rahasia — JANGAN pernah di-commit ─────────────────────────────
+.env
+.env.local
+*.key
+
+# ── Python ────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ── Node / frontend ───────────────────────────────────────────────
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
+npm-debug.log*
+
+# ── Cache yang bisa dibuat ulang otomatis ─────────────────────────
+# Dibangun ulang dari knowledge_graph_v1.graphml saat backend start
+*.cache.pkl
+
+# ── Editor & OS ───────────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ── Output sementara ──────────────────────────────────────────────
+*.log
+kandidat_top*.xlsx
+kandidat_top*.csv
+
+# ── Duplikat data di root ─────────────────────────────────────────
+# Sumber data tunggal yang dibaca backend adalah folder data/.
+# Berkas berikut adalah salinan identik dari data/ (tetap ada di disk lokal).
+/candidate_profile_rombak.csv
+/dataset_jobs_summarized.csv
+/xai_explanations_rombak.json
